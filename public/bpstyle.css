@@ -1,0 +1,15 @@
+.brd{
+    box-shadow: rgb(173, 178, 182);
+    background-color: #ffffff;
+}
+
+
+.bg-red{
+    background-color:#ff4747; 
+
+}
+.sidebar.sidebar-pills .nav-link.active{
+    background-color:#ff4747; 
+}
+
+
