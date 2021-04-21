@@ -14,9 +14,11 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
+        "hardevine/shoppingcart": "^2.9",
         "intervention/image": "^2.5",
         "laravel/framework": "^7.29",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "laravel/ui": "2.4"
     },
     "require-dev": {
         "backpack/generators": "^3.1",
@@ -41,6 +43,10 @@
         "psr-4": {
             "App\\": "app/"
         },
+        "files": [
+            "app/Http/Helpers.php"
+            
+        ],
         "classmap": [
             "database/seeds",
             "database/factories"

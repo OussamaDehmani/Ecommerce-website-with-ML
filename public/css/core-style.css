@@ -396,7 +396,7 @@ img {
 }
 
 .cart_quantity {
-    background-color: #f77700;
+    background-color: #ff084e;
     border-radius: 50%;
     color: #fff;
     font-size: 11px;
@@ -432,7 +432,7 @@ img {
 
 .header-right-side-menu > a:focus,
 .header-right-side-menu > a:hover {
-    background-color: #f77700;
+    background-color: #ff084e;
     color: #fff;
 }
 
@@ -1077,7 +1077,7 @@ img {
 
 .portfolio-menu > .btn:focus,
 .portfolio-menu > .btn.active {
-    color: #f77700;
+    color: #ff084e;
     box-shadow: none;
    
 }

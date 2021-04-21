@@ -50,7 +50,18 @@ class SubcategoryCrudController extends CrudController
             'label' => "name",
             'type'  => 'text',
         ];
-        $f2=[  // Select2
+        $f2=   [
+            'name'      => 'image', // The db column name
+            'label'     => 'Product Image', // Table column heading
+            'type'      => 'image',
+            // 'prefix' => 'folder/subfolder/',
+            // image from a different disk (like s3 bucket)
+            // 'disk'   => 'disk-name', 
+            // optional width/height if 25px is not ok with you
+             'height' => '100px',
+             'width'  => '100px',
+        ];
+        $f3=[  // Select2
             'label'     => "Category :",
             'name'      => 'category_id', // the db column for the foreign key
             'entity'    => 'category', // the method that defines the relationship in your Model
@@ -59,7 +70,7 @@ class SubcategoryCrudController extends CrudController
             'default'   => 2, // set the default value of the select2
          
             ];
-        CRUD::addColumns([$f1, $f2]);
+        CRUD::addColumns([$f2,$f1,  $f3]);
     }
 
     /**
@@ -85,6 +96,15 @@ class SubcategoryCrudController extends CrudController
             'name'  => 'name',
             'label' => "name",
             'type'  => 'text',
+        ]);
+        $this->crud->addField([
+            'label'        => "image",
+            'name'         => "image",
+            'filename'     => null, // set to null if not needed
+            'type'         => 'base64_image',
+            'aspect_ratio' => 1, // set to 0 to allow any aspect ratio
+            'crop'         => true, // set to true to allow cropping, false to disable
+            'src'          => NULL, // null to read straight from DB, otherwise set to model accessor function
         ]);
         $this->crud->addField([  // Select2
             'label'     => "Category :",

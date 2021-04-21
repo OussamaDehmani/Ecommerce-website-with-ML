@@ -22,7 +22,6 @@ class CreatePiecesTable extends Migration
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
             $table->unsignedInteger('fournisseur_id');
             $table->foreign('fournisseur_id')->references('id')->on('fournisseurs')->onDelete('cascade');
-            
             $table->timestamps();
         });
     }

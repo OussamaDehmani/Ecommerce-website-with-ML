@@ -19,8 +19,8 @@ class Piece extends Model
     protected $table = 'pieces';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['id','subcategory_id'];
-    protected $fillable = ['subcategory_id'];
+    protected $guarded = ['id'];
+  //  protected $fillable = ['subcategory_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -93,9 +93,7 @@ class Piece extends Model
         return $this->BelongsTo(Subcategory::class,'subcategory_id');
     }
 
-    public function subname(){
-        return $this->get()->first()->subcategory();
-    }
+   
     /*
     |--------------------------------------------------------------------------
     | SCOPES

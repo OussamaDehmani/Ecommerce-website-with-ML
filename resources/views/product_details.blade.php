@@ -9,17 +9,17 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Karl - Fashion Ecommerce Template | Product Details</title>
+    <title>Karl - Fashion Ecommerce Template | Shop</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}" />
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="css/core-style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ asset('css/core-style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('style.css') }}" />
 
     <!-- Responsive CSS -->
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
 
 </head>
 
@@ -96,106 +96,92 @@
     <div id="wrapper">
 
         <!-- ****** Header Area Start ****** -->
-        <header class="header_area bg-img background-overlay-white" style="background-image: url(img/bg-img/bg-1.jpg);">
-            <!-- Top Header Area Start -->
-            <div class="top_header_area">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center justify-content-end">
+        <header class="header_area">
+        <!-- Top Header Area Start -->
+        <div class="top_header_area backgrey">
+          <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-end">
+              <div
+                class="d-flex align-items-center mr-auto header-right-side-menu"
+              >
+                <a class=" " href="#" id="sideMenuBtn"
+                  ><i class="ti-menu" aria-hidden="true"></i
+                ></a>
+              </div>
+              <div class="col-12 col-lg-7">
+                <div class="top_single_area d-flex align-items-center">
+                  <!-- Logo Area -->
+                  <div class="top_logo">
+                    <a href="#"><img src="{{ asset('img/core-img/logo.png') }}" alt="" /></a>
+                  </div>
+                  <!-- Cart & Menu Area -->
+                  <div
+                    class="header-cart-menu d-flex align-items-center ml-auto"
+                  >
+                    <!-- Cart Area -->
+                    <div class="cart">
+                      <a href="#" id="header-cart-btn" target="_blank"
+                      ><span class="cart_quantity">2</span>
+                      <i class="ti-bag"></i> Your Bag $20</a>
+                     <a href="register"> <button type="button"  class="btn btn-secondary btn-sm sign" >Sign Up</button></a>
+                     <a href="login"> <button type="button" class="btn btn-secondary btn-sm sign">Sign In</button></a>
 
-                        <div class="col-12 col-lg-7">
-                            <div class="top_single_area d-flex align-items-center">
-                                <!-- Logo Area -->
-                                <div class="top_logo">
-                                    <a href="#"><img src="img/core-img/logo.png" alt=""></a>
-                                </div>
-                                <!-- Cart & Menu Area -->
-                                <div class="header-cart-menu d-flex align-items-center ml-auto">
-                                    <!-- Cart Area -->
-                                    <div class="cart">
-                                        <a href="#" id="header-cart-btn" target="_blank"><span class="cart_quantity">2</span> <i class="ti-bag"></i> Your Bag $20</a>
-                                        <!-- Cart List Area Start -->
-                                        <ul class="cart-list">
-                                            <li>
-                                                <a href="#" class="image"><img src="img/product-img/product-10.jpg" class="cart-thumb" alt=""></a>
-                                                <div class="cart-item-desc">
-                                                    <h6><a href="#">Women's Fashion</a></h6>
-                                                    <p>1x - <span class="price">$10</span></p>
-                                                </div>
-                                                <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="image"><img src="img/product-img/product-11.jpg" class="cart-thumb" alt=""></a>
-                                                <div class="cart-item-desc">
-                                                    <h6><a href="#">Women's Fashion</a></h6>
-                                                    <p>1x - <span class="price">$10</span></p>
-                                                </div>
-                                                <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
-                                            </li>
-                                            <li class="total">
-                                                <span class="pull-right">Total: $20.00</span>
-                                                <a href="cart.html" class="btn btn-sm btn-cart">Cart</a>
-                                                <a href="checkout-1.html" class="btn btn-sm btn-checkout">Checkout</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="header-right-side-menu ml-15">
-                                        <a href="#" id="sideMenuBtn"><i class="ti-menu" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                    
+                      <!-- Cart List Area Start -->
+                      <ul class="cart-list">
+                        <li>
+                          <a href="#" class="image"
+                            ><img
+                              src="{{ asset('img/product-img/product-10.jpg') }}"
+                              class="cart-thumb"
+                              alt=""
+                          /></a>
+                          <div class="cart-item-desc">
+                            <h6><a href="#">Women's Fashion</a></h6>
+                            <p>1x - <span class="price">$10</span></p>
+                          </div>
+                          <span class="dropdown-product-remove"
+                            ><i class="icon-cross"></i
+                          ></span>
+                        </li>
+                        <li>
+                          <a href="#" class="image"
+                            ><img
+                              src="{{ asset('img/product-img/product-11.jpg') }}"
+                              class="cart-thumb"
+                              alt=""
+                          /></a>
+                          <div class="cart-item-desc">
+                            <h6><a href="#">Women's Fashion</a></h6>
+                            <p>1x - <span class="price">$10</span></p>
+                          </div>
+                          <span class="dropdown-product-remove"
+                            ><i class="icon-cross"></i
+                          ></span>
+                        </li>
+                        <li class="total">
+                          <span class="pull-right">Total: $20.00</span>
+                          <a href="cart.html" class="btn btn-sm btn-cart"
+                            >Cart</a
+                          >
+                          <a
+                            href="checkout-1.html"
+                            class="btn btn-sm btn-checkout"
+                            >Checkout</a
+                          >
+                        </li>
+                      </ul>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Top Header Area End -->
-            <div class="main_header_area">
-                <div class="container h-100">
-                    <div class="row h-100">
-                        <div class="col-12 d-md-flex justify-content-between">
-                            <!-- Header Social Area -->
-                            <div class="header-social-area">
-                                <a href="#"><span class="karl-level">Share</span> <i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </div>
-                            <!-- Menu Area -->
-                            <div class="main-menu-area">
-                                <nav class="navbar navbar-expand-lg align-items-start">
-
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#karl-navbar" aria-controls="karl-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i class="ti-menu"></i></span></button>
-
-                                    <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
-                                        <ul class="navbar-nav animated" id="nav">
-                                            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                                <div class="dropdown-menu" aria-labelledby="karlDropdown">
-                                                    <a class="dropdown-item" href="index.html">Home</a>
-                                                    <a class="dropdown-item" href="shop.html">Shop</a>
-                                                    <a class="dropdown-item" href="product-details.html">Product Details</a>
-                                                    <a class="dropdown-item" href="cart.html">Cart</a>
-                                                    <a class="dropdown-item" href="checkout.html">Checkout</a>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Dresses</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#"><span class="karl-level">hot</span> Shoes</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                            </div>
-                            <!-- Help Line -->
-                            <div class="help-line">
-                                <a href="tel:+346573556778"><i class="ti-headphone-alt"></i> +34 657 3556 778</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <!-- Top Header Area End -->
+       
+      </header>
         <!-- ****** Header Area End ****** -->
 
         <section class="top-discount-area d-md-flex align-items-center">
@@ -227,7 +213,7 @@
                             <li class="breadcrumb-item active">Long Dress</li>
                         </ol>
                         <!-- btn -->
-                        <a href="#" class="backToHome d-block"><i class="fa fa-angle-double-left"></i> Back to Category</a>
+                        <a href="#" class="backToHome d-block"><i class="fa fa-angle-double-left"></i> Back to Category </a>
                     </div>
                 </div>
             </div>
@@ -244,35 +230,35 @@
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/product-9.jpg);">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image:url({{asset($piece->image)}}">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/product-2.jpg);">
+                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url({{asset('img/product-img/product-2.jpg')}})">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/product-3.jpg);">
+                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url({{asset('img/product-img/product-3.jpg')}})">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/product-4.jpg);">
+                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url({{asset('img/product-img/product-4.jpg')}})">
                                     </li>
                                 </ol>
 
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="img/product-img/product-9.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-9.jpg" alt="First slide">
+                                        <a class="gallery_img" href="{{ url($piece->image)}}">
+                                        <img class="d-block w-100" src="{{asset($piece->image)}}" alt="First slide">
                                     </a>
                                     </div>
                                     <div class="carousel-item">
                                         <a class="gallery_img" href="img/product-img/product-2.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-2.jpg" alt="Second slide">
+                                        <img class="d-block w-100" src="{{asset('img/product-img/product-2.jpg')}}" alt="Second slide">
                                     </a>
                                     </div>
                                     <div class="carousel-item">
                                         <a class="gallery_img" href="img/product-img/product-3.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-3.jpg" alt="Third slide">
+                                        <img class="d-block w-100" src="{{asset('img/product-img/product-3.jpg')}}" alt="Third slide">
                                     </a>
                                     </div>
                                     <div class="carousel-item">
                                         <a class="gallery_img" href="img/product-img/product-4.jpg">
-                                        <img class="d-block w-100" src="img/product-img/product-4.jpg" alt="Fourth slide">
+                                        <img class="d-block w-100" src="{{asset('img/product-img/product-4.jpg')}}" alt="Fourth slide">
                                     </a>
                                     </div>
                                 </div>
@@ -283,9 +269,9 @@
                     <div class="col-12 col-md-6">
                         <div class="single_product_desc">
 
-                            <h4 class="title"><a href="#">Long Yellow Dress</a></h4>
+                            <h4 class="title"><a href="#">{{$piece->name}}</a></h4>
 
-                            <h4 class="price">$ 39.99</h4>
+                            <h4 class="price">$ {{$piece->prix}}</h4>
 
                             <p class="available">Available: <span class="text-muted">In Stock</span></p>
 
@@ -312,13 +298,17 @@
                             </div>
 
                             <!-- Add to Cart Form -->
-                            <form class="cart clearfix mb-50 d-flex" method="post">
+                            <form class="cart clearfix mb-50 d-flex" method="post" action="{{route('cart.store')}}">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$piece->id}}">
+                                        <input type="hidden" name="name" value="{{$piece->name}}">
+                                        <input type="hidden" name="prix" value="{{$piece->prix}}">
                                 <div class="quantity">
                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                     <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                 </div>
-                                <button type="submit" name="addtocart" value="5" class="btn cart-submit d-block">Add to cart</button>
+                                <button type="submit" name="addtocart"  class="btn cart-submit d-block">Add to cart</button>
                             </form>
 
                             <div id="accordion" role="tablist">
@@ -403,7 +393,11 @@
                                             <a href="#">View Full Product Details</a>
                                         </div>
                                         <!-- Add to Cart Form -->
-                                        <form class="cart" method="post">
+                                        <form class="cart" method="post" action="{{route('cart.store')}}">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$piece->id}}">
+                                        <input type="hidden" name="name" value="{{$piece->name}}">
+                                        <input type="hidden" name="prix" value="{{$piece->prix}}">
                                             <div class="quantity">
                                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
 
@@ -416,10 +410,7 @@
                                             <div class="modal_pro_wishlist">
                                                 <a href="wishlist.html" target="_blank"><i class="ti-heart"></i></a>
                                             </div>
-                                            <!-- Compare -->
-                                            <div class="modal_pro_compare">
-                                                <a href="compare.html" target="_blank"><i class="ti-stats-up"></i></a>
-                                            </div>
+                                           
                                         </form>
 
                                         <div class="share_wf mt-30">
@@ -453,96 +444,26 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="you_make_like_slider owl-carousel">
-
+@foreach($Similar as $similar)
                             <!-- Single gallery Item -->
                             <div class="single_gallery_item">
                                 <!-- Product Image -->
                                 <div class="product-img">
-                                    <img src="img/product-img/product-1.jpg" alt="">
+                                    <img src="{{asset($similar->image)}}" alt="">
                                     <div class="product-quicview">
                                         <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
                                     </div>
                                 </div>
                                 <!-- Product Description -->
                                 <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
+                                    <h4 class="product-price">${{$similar->prix}}</h4>
+                                    <p>{{$similar->Caracteristique}}</p>
                                     <!-- Add to Cart -->
                                     <a href="#" class="add-to-cart-btn">ADD TO CART</a>
                                 </div>
                             </div>
-
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-2.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
-                            </div>
-
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-3.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
-                            </div>
-
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-4.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
-                            </div>
-
-                            <!-- Single gallery Item -->
-                            <div class="single_gallery_item">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product-5.jpg" alt="">
-                                    <div class="product-quicview">
-                                        <a href="#" data-toggle="modal" data-target="#quickview"><i class="ti-plus"></i></a>
-                                    </div>
-                                </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
-                                    <h4 class="product-price">$39.90</h4>
-                                    <p>Jeans midi cocktail dress</p>
-                                    <!-- Add to Cart -->
-                                    <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-                                </div>
-                            </div>
+@endforeach
+                        
                         </div>
                     </div>
                 </div>
@@ -625,16 +546,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </div>
     <!-- /.wrapper end -->
 
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+      <!-- jQuery (Necessary for All JavaScript Plugins) -->
+      <script src="{{ asset('js/jquery/jquery-2.2.4.min.js') }}"></script>
     <!-- Popper js -->
-    <script src="js/popper.min.js"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
     <!-- Bootstrap js -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <!-- Plugins js -->
-    <script src="js/plugins.js"></script>
+    <script src="{{ asset('js/plugins.js') }}"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="{{ asset('js/active.js') }}"></script>
 
 </body>
 

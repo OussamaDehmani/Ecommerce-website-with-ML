@@ -49,7 +49,7 @@ class PieceCrudController extends CrudController
         CRUD::addColumn(
             [
                 'name'      => 'image', // The db column name
-                'label'     => 'Product Image', // Table column heading
+                'label'     => 'image', // Table column heading
                 'type'      => 'image',
                 // 'prefix' => 'folder/subfolder/',
                 // image from a different disk (like s3 bucket)
@@ -126,11 +126,11 @@ class PieceCrudController extends CrudController
          */
         $this->crud->addField(  [
             'name'  => 'name',
-            'label' => "Name :",
+            'label' => "name",
             'type'  => 'text',
         ]);
         $this->crud->addField([
-            'label'        => "Image :",
+            'label'        => "image",
             'name'         => "image",
             'filename'     => null, // set to null if not needed
             'type'         => 'base64_image',
