@@ -7,10 +7,6 @@
   <title>Document</title>
 </head>
 <body>
-  @foreach($table as $t)
-  <ul>
-    <li>{{$t}}</li>
-  </ul>
-  @endforeach
+merci
 </body>
 </html>

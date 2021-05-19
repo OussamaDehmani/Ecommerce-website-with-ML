@@ -30,15 +30,15 @@
                                             <a href="#"><img src="{{asset($card->options->image)}}" alt="Product"></a>
                                             <h6>{{$card->name}}</h6>
                                         </td>
-                                        <td class="price"><span>${{$card->price}}</span></td>
+                                        <td class="price" > $<span id="myPrice">{{$card->price}}</span></td>
                                         <td class="qty">
                                             <div class="quantity">
-                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1">
-                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--; getprice(); return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                <input type="number"  class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1">
+                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++; getprice(); return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                             </div>
                                         </td>
-                                        <td class="total_price"><span>$49.88</span></td>
+                                        <td class="total_price">$<span id='totalprice'>49.88</span></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -102,11 +102,12 @@
                             </div>
 
                             <ul class="cart-total-chart">
-                                <li><span>Subtotal</span> <span>$59.90</span></li>
+                                <li><span>Subtotal</span> <span>${{Cart::subtotal()}}</span></li>
                                 <li><span>Shipping</span> <span>Free</span></li>
-                                <li><span><strong>Total</strong></span> <span><strong>$59.90</strong></span></li>
+                                <li><span>Taxe</span> <span>${{Cart::tax()}}</span></li>
+                                <li><span><strong>Total</strong></span> <span><strong>$${{Cart::total()}}</strong></span></li>
                             </ul>
-                            <a href="checkout.html" class="btn karl-checkout-btn">Proceed to checkout</a>
+                            <a href="checkout" class="btn karl-checkout-btn">Proceed to checkout</a>
                         </div>
                     </div>
                 </div>

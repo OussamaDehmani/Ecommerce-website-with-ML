@@ -26,7 +26,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'email' => 'required|unique:users,email',
+            'password' => 'required|min:6',
         ];
     }
 
@@ -50,7 +51,9 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'required' => 'this value is required !',
+            'unique' => 'this value already exist try to change it !',
+            'min' => 'password shouldn\'t be less than 6 characters',
         ];
     }
 }

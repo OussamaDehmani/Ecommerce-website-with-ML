@@ -10,3 +10,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('subcategory') }}'><i class='nav-icon la la-list'></i> Subcategories</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('fournisseur') }}'><i class='nav-icon la la-wrench'></i> Fournisseurs</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('comment') }}'><i class='nav-icon la la-question'></i> Comments</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('piece_user') }}'><i class='nav-icon la la-question'></i> Rate</a></li>

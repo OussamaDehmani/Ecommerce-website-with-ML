@@ -26,7 +26,7 @@ class PieceRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+             'name' => 'required|unique:pieces,name',
         ];
     }
 
@@ -50,7 +50,8 @@ class PieceRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'required' => 'this value is required !',
+            'unique' => 'this value already exist try to change it !',
         ];
     }
 }

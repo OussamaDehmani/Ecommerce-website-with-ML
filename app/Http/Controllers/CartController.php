@@ -13,7 +13,14 @@ class CartController extends Controller
      */
     public function index()
     {
-      dd( Cart::content());
+       if(Cart::content()->count()<1){
+        return redirect()->route('index');
+
+       }else{
+       return view('mycart');
+       }
+     
+
     }
 
     /**
@@ -34,9 +41,39 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-      
-     Cart::add($request->id,$request->name,$request->quantity,$request->prix, ['image' => $request->image])->associate('Piece');
+        $Piece= Piece::where('id',$request->input('myid'))->first();
+        $temoin=0;
+        foreach(Cart::content() as $item){
+        //dd($item->id==$request->input('myid'),$item->id,$request->input('myid')) ;
+          
+          if($item->id==$request->input('myid')){
+          Cart::remove($item->rowId);
+          Cart::add($request->input('myid'),$request->input('name'),$request->input('myqte'),$request->input('prix'), ['image' => $request->input('image')])->associate('Piece');
+          $temoin=1;
+    
+          }
+        }
+    
+        if($temoin==0){
+        Cart::add($request->input('myid'),$request->input('name'),$request->input('myqte'),$request->input('prix'), ['image' => $request->input('image')])->associate('Piece');
+     
+          
+        }
+       
+        return redirect()->route('index')->with('success','le produit a été ajouté ');
+        
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storenoqte(Request $request)
+    {
 
+     $added=Cart::add($request->id,$request->name,1,$request->prix, ['image' => $request->image])->associate('Piece');
+    // dd($request,$added,Cart::content());
      return redirect()->route('index')->with('success','le produit a été ajouté ');
     }
 
@@ -82,6 +119,24 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cart::remove($id);
+        return redirect()->route('cart.index');
+    }
+       /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyindex($id)
+    {
+        Cart::remove($id);
+        return redirect()->route('index');
+    }
+   
+    public function destroycart()
+    {
+        Cart::destroy();
+      
     }
 }

@@ -18,7 +18,8 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "2.4"
+        "laravel/ui": "2.4",
+        "stripe/stripe-php": "^7.77"
     },
     "require-dev": {
         "backpack/generators": "^3.1",

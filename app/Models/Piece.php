@@ -92,7 +92,10 @@ class Piece extends Model
     {
         return $this->BelongsTo(Subcategory::class,'subcategory_id');
     }
-
+    public function user()
+    {
+        return $this->belongsToMany(\User::class);
+    }
    
     /*
     |--------------------------------------------------------------------------

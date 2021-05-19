@@ -15,8 +15,11 @@ class CreateCommandesTable extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('adressliv');
-            // $table->date('dateliv')->default(\Carbon\Carbon::now());
+            $table->date('dateliv')->default(\Carbon\Carbon::now());
             $table->unsignedInteger('user_id');
+            $table->Integer('amount');
+            $table->string('city');
+            $table->string('contry');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

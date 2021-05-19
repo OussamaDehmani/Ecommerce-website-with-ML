@@ -86,4 +86,8 @@ padding-left: 5px;
         padding: 10px;
         
     }
+    .form-control{
+        border: 1px solid #ff4747;
+        border-radius: 5px;
+    }
  

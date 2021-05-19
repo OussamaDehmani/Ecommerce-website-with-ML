@@ -26,7 +26,7 @@ class SubcategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|unique:subcategories,name'
         ];
     }
 
@@ -38,7 +38,8 @@ class SubcategoryRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'required' => 'this value is required !',
+            'unique' => 'this value already exist try to change it !',
         ];
     }
 
