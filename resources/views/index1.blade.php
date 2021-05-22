@@ -25,32 +25,11 @@
                                                     <div class="col-md-4">
                                                         <ul class="list-unstyled">
                                                         @foreach($cat->subcategory as $sub)
-                                                            <li><a href="index.html">{{$sub->name}}</a></li>
+                                                            <li><a href="subcategory/{{$sub->id}}">{{$sub->name}}</a></li>
                                                         @endforeach
                                                         </ul>
                                                     </div>
 
-                                                    <!-- <div class="col-md-4">
-                                                        <ul class="list-unstyled">
-                                                            <li><a href="cart.html&amp;style=alt2">Shopping Cart</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="about.html">About Us</a></li>
-                                                            <li><a href="contact.html">Contact Us</a></li>
-                                                            <li><a href="blog.html">Blog</a></li>
-                                                            <li><a href="blog-fullwidth.html">Blog Full Width</a></li>
-                                                        </ul>
-                                                    </div> -->
-
-                                                    <!-- <div class="col-md-4">
-                                                        <ul class="list-unstyled">
-                                                            <li><a href="blog-post.html">Blog Post</a></li>
-                                                            <li><a href="faq.html">FAQ</a></li>
-                                                            <li><a href="terms.html">Terms & Conditions</a></li>
-                                                            <li><a href="authentication.html">Login/Register</a></li>
-                                                            <li><a href="404.html">404</a></li>
-                                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                                        </ul>
-                                                    </div> -->
                                                 </div>
                                             </li>
                                         </ul>

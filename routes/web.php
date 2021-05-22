@@ -1,7 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
+
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,16 +44,15 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+Auth::routes();
 //Route::get('/pannier/getall', 'CartController@index')->name('cart.index');
 Route::get('/test/{id}', 'CarController@test');
 Route::get('/destroy/{id}', 'CartController@destroy');
 Route::get('/destroy', 'CartController@destroycart');
 Route::get('/destroyindex/{id}', 'CartController@destroyindex');
 
+Route::group(['middleware' => ['auth']], function () { 
 
-Route::get('/','CarController@home')->name('index');
-Route::group(['middlware'=>['auth']],function(){
     Route::get('/details/{id}', 'CarController@details')->name('details');
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/checkout','PayementController@index')->name('checkout');
@@ -59,7 +62,12 @@ Route::group(['middlware'=>['auth']],function(){
     Route::post('/pannier/add', 'CartController@store')->name('cart.store');
     Route::post('/pannier/addnoqte', 'CartController@storenoqte')->name('cart.storenoqte');
     Route::get('/mycart', 'CartController@index')->name('cart.index');
+    Route::post('/addcomment', 'CarController@addcomment')->name('addcomment');
+    Route::get('/subcategory/{id}', 'CarController@subcatgory')->name('addcomment');
 });
-
+Route::get('/','CarController@home')->name('index');
+Route::patch('/pannier/{rowid}', 'CartController@update')->name('cart.update');
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 

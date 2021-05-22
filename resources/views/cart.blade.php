@@ -36,6 +36,13 @@
                                                 <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--; getprice(); return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                                 <input type="number"  class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1">
                                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++; getprice(); return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                <!-- <select name="qty" id="qty">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select> -->
                                             </div>
                                         </td>
                                         <td class="total_price">$<span id='totalprice'>49.88</span></td>

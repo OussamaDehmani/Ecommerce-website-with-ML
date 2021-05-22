@@ -117,13 +117,25 @@
                                 <a class="dropdown-toggle"  data-toggle="dropdown" href="#change-language">{{ Auth::user()->name }}</a>
                                 <ul class="dropdown-menu" role="menu" >
                                     <li role="presentation"><a role="menuitem"  href="#">Commandes</a></li>
-                                    <li role="presentation"><a role="menuitem"  href="#">deconnexion</a></li>
+                                    <li role="presentation"><a role="menuitem"  href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                        deco</a>
+                                    </li>
+                                  
+                                    
+
+                               
+                            </li>
                               
                             </li>
-                            <!-- <li><a href="#">{{ Auth::user()->name }}</a></li> -->
+                          
                             @endguest
                         </ul>
                     </div><!-- /.col -->
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                    </form>
                 </div><!-- /.container -->
             </nav><!-- /.top-bar -->
             <!-- ============================================================= TOP NAVIGATION : END ============================================================= -->

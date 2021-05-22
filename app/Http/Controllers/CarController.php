@@ -9,9 +9,11 @@ use App\Models\Piece;
 use App\Models\Car;
 use App\Models\Piece_user;
 use App\Models\Clique;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
-
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class CarController extends Controller
 {
@@ -145,8 +147,10 @@ class CarController extends Controller
     function details($id){
       //get the product
       $Piece= Piece::where('id',$id)->first();
-  
       $qte=1;
+      $idcat=$Piece->subcategory->category->id;
+      $Subcategories= Subcategory::where('category_id',$idcat)->take(5)->get();
+    
       foreach(Cart::content() as $cart){
         if($cart->id==$id){
           $qte=$cart->qty;
@@ -165,14 +169,41 @@ class CarController extends Controller
         $clic->piece_id=$id;
         $clic->save();
 
+      //get comments
+      $comments=Comment::where('piece_id',$id)->take(3)->get();
+      //get images of product
+      
+
       return view('details_product',[
         'piece'=>$Piece,
+        'comments'=>$comments,
         'qte'=>$qte,
-        // 'Similar'=>$Similar
+        'Subcategories'=>$Subcategories,
       ]);
     }
 
+
+    function addcomment(Request $request){
+   
+      $comment=new Comment();
+      $comment->description=$request->description;
+      $comment->piece_id=$request->piece_id;
+      $comment->user_id=Auth::user()->id;
+      $comment->date_pub=Carbon::now();
+      $comment->save();
+ 
+     return $this->details($request->piece_id);
+    }
   
+
+
+
+
+function subcatgory($id){  
+  $Pieces=Piece::where('subcategory_id','=',$id)->get();
+  return view('Subpieces',['pieces'=>$Pieces]);
+}
+    
 function test($id){  
 //   Cart::destroy();
   dd(Cart::content());

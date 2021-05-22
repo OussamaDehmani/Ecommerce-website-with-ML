@@ -13,19 +13,12 @@
                             <ul class="inline">
                                 <li class="dropdown le-dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-list"></i> shop by department
+                                        <i class="fa fa-list"></i> Recommended Category
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Computer Cases & Accessories</a></li>
-                                        <li><a href="#">CPUs, Processors</a></li>
-                                        <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
-                                        <li><a href="#">Graphics, Video Cards</a></li>
-                                        <li><a href="#">Interface, Add-On Cards</a></li>
-                                        <li><a href="#">Laptop Replacement Parts</a></li>
-                                        <li><a href="#">Memory (RAM)</a></li>
-                                        <li><a href="#">Motherboards</a></li>
-                                        <li><a href="#">Motherboard &amp; CPU Combos</a></li>
-                                        <li><a href="#">Motherboard Components</a></li>
+                                        @foreach($Subcategories as $cat)
+                                        <li><a href="{{ route('subcategory', ['id' => $cat->id]) }}">{{$cat->name}}</a></li>
+                                    @endforeach
                                     </ul>
                                 </li>
 
@@ -75,8 +68,95 @@
 
             <div id="single-product">
                 <div class="container">
-
+                @if(count($piece->myimage)>=2)
                     <div class="no-margin col-xs-12 col-sm-6 col-md-5 gallery-holder">
+                        <div class="product-item-holder size-big single-product-gallery small-gallery">
+
+                            <div id="owl-single-product" class="owl-carousel">
+                                <div class="single-product-gallery-item" id="slide0">
+                                    <a data-rel="prettyphoto" href="">
+                                        <img class="img-responsive" style="width:433px;height:325px" alt="" src="{{asset($piece->image)}}"  />
+                                    </a>
+                                </div><!-- /.single-product-gallery-item -->
+                              
+                                <div class="single-product-gallery-item" id="slide1">
+                                    <a data-rel="prettyphoto" href="">
+                                        <img class="img-responsive" style="width:433px;height:325px" alt="" src="{{asset($piece->myimage[0]->image)}}"  />
+                                    </a>
+                                </div><!-- /.single-product-gallery-item -->
+
+                                <div class="single-product-gallery-item" id="slide2">
+                                    <a data-rel="prettyphoto" href="">
+                                    <img class="img-responsive" style="width:433px;height:325px" alt="" src="{{asset($piece->myimage[1]->image)}}" />
+
+                                    </a>
+                                </div><!-- /.single-product-gallery-item -->
+
+                                <div class="single-product-gallery-item" id="slide3">
+                                    <a data-rel="prettyphoto" href="">
+                                        <!-- <img class="img-responsive" alt="" src="{{asset('images/blank.gif')}}" data-echo="{{asset('images/products/product-gallery-01.jpg')}}" />
+                                     -->
+                                     <img class="img-responsive" style="width:433px;height:325px" alt="" src="{{asset($piece->myimage[2]->image)}}"  />
+
+                                    </a>
+                                </div><!-- /.single-product-gallery-item -->
+                            </div><!-- /.single-product-slider -->
+
+                          
+                            <div class="single-product-gallery-thumbs gallery-thumbs">
+
+                                <div id="owl-single-product-thumbnails" class="owl-carousel">
+                                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide0">
+                                        <img width="67" alt="" src="{{($piece->image)}}"  />
+                                    </a>
+                                  
+                                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
+                                        <img width="67" alt="" src="{{($piece->myimage[0]->image)}}"  />
+                                    </a>
+
+                                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">
+                                    <img width="67" alt="" src="{{asset($piece->myimage[1]->image)}}" />
+                                        
+                                    </a>
+
+                                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide3">
+                                    <img width="67" alt="" src="{{asset($piece->myimage[2]->image)}}"  />
+                                       
+                                    </a>
+
+                                      
+                                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
+                                        <img width="67" alt="" src="{{($piece->myimage[0]->image)}}"  />
+                                    </a>
+
+                                  
+                                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide0">
+                                        <img width="67" alt="" src="{{($piece->image)}}"  />
+                                    </a>
+                                 
+
+                                    <!-- <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="0" href="#slide1">
+                                    <img width="67" alt="" src="{{asset('images/blank.gif')}}" data-echo="{{asset('images/products/gallery-thumb-01.jpg')}}" />
+
+                                    </a>
+
+                    -->
+                                </div><!-- /#owl-single-product-thumbnails -->
+
+                                <div class="nav-holder left hidden-xs">
+                                    <a class="prev-btn slider-prev" data-target="#owl-single-product-thumbnails" href="#prev"></a>
+                                </div><!-- /.nav-holder -->
+
+                                <div class="nav-holder right hidden-xs">
+                                    <a class="next-btn slider-next" data-target="#owl-single-product-thumbnails" href="#next"></a>
+                                </div><!-- /.nav-holder -->
+
+                            </div><!-- /.gallery-thumbs -->
+
+                        </div><!-- /.single-product-gallery -->
+                    </div><!-- /.gallery-holder -->
+                @else
+                <div class="no-margin col-xs-12 col-sm-6 col-md-5 gallery-holder">
                         <div class="product-item-holder size-big single-product-gallery small-gallery">
 
                             <div id="owl-single-product" class="owl-carousel">
@@ -123,9 +203,7 @@
 
                                     <!-- <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="0" href="#slide1">
                                     <img width="67" alt="" src="{{asset('images/blank.gif')}}" data-echo="{{asset('images/products/gallery-thumb-01.jpg')}}" />
-
                                     </a>
-
                     -->
                                 </div><!-- /#owl-single-product-thumbnails -->
 
@@ -141,10 +219,11 @@
 
                         </div><!-- /.single-product-gallery -->
                     </div><!-- /.gallery-holder -->
+                @endif
                     <div class="no-margin col-xs-12 col-sm-7 body-holder">
                     <div class="body">
                          
-                        <form action="{{route('cart.store')}}" method="post">
+                        <form action="{{route('cart.store')}}" methode="post">
                             @csrf
                             <div class="star-holder inline"><div class="star" data-score="4"></div></div>
                             <div class="availability"><label>Availability:</label><span class="available">  in stock</span></div>
@@ -295,7 +374,9 @@
 
 
                             <div class="tab-pane" id="reviews">
+                                
                                 <div class="comments">
+                                @foreach($comments as $comment)
                                     <div class="comment-item">
                                         <div class="row no-margin">
                                             <div class="col-lg-1 col-xs-12 col-sm-2 no-margin">
@@ -308,17 +389,18 @@
                                                 <div class="comment-body">
                                                     <div class="meta-info">
                                                         <div class="author inline">
-                                                            <a href="#" class="bold">John Smith</a>
+                                                            <a href="#" class="bold">{{$comment->user->name}}</a>
                                                         </div>
                                                         <div class="star-holder inline">
                                                             <div class="star" data-score="4"></div>
                                                         </div>
                                                         <div class="date inline pull-right">
-                                                            12.07.2013
+                                                        {{$comment->date_pub}}
+                                                       
                                                         </div>
                                                     </div><!-- /.meta-info -->
                                                     <p class="comment-text">
-                                                        Integer id purus ultricies nunc tincidunt congue vitae nec felis. Vivamus sit amet nisl convallis, faucibus risus in, suscipit sapien. Vestibulum egestas interdum tellus id venenatis.
+                                                    {{$comment->description}}
                                                     </p><!-- /.comment-text -->
                                                 </div><!-- /.comment-body -->
 
@@ -326,83 +408,24 @@
 
                                         </div><!-- /.row -->
                                     </div><!-- /.comment-item -->
-
-                                    <div class="comment-item">
-                                        <div class="row no-margin">
-                                            <div class="col-lg-1 col-xs-12 col-sm-2 no-margin">
-                                                <div class="avatar">
-                                                    <img alt="avatar" src="{{asset('images/default-avatar.jpg')}}">
-                                                </div><!-- /.avatar -->
-                                            </div><!-- /.col -->
-
-                                            <div class="col-xs-12 col-lg-11 col-sm-10 no-margin">
-                                                <div class="comment-body">
-                                                    <div class="meta-info">
-                                                        <div class="author inline">
-                                                            <a href="#" class="bold">Jane Smith</a>
-                                                        </div>
-                                                        <div class="star-holder inline">
-                                                            <div class="star" data-score="5"></div>
-                                                        </div>
-                                                        <div class="date inline pull-right">
-                                                            12.07.2013
-                                                        </div>
-                                                    </div><!-- /.meta-info -->
-                                                    <p class="comment-text">
-                                                        Integer id purus ultricies nunc tincidunt congue vitae nec felis. Vivamus sit amet nisl convallis, faucibus risus in, suscipit sapien. Vestibulum egestas interdum tellus id venenatis.
-                                                    </p><!-- /.comment-text -->
-                                                </div><!-- /.comment-body -->
-
-                                            </div><!-- /.col -->
-
-                                        </div><!-- /.row -->
-                                    </div><!-- /.comment-item -->
-
-                                    <div class="comment-item">
-                                        <div class="row no-margin">
-                                            <div class="col-lg-1 col-xs-12 col-sm-2 no-margin">
-                                                <div class="avatar">
-                                                    <img alt="avatar" src="{{asset('images/default-avatar.jpg')}}">
-                                                </div><!-- /.avatar -->
-                                            </div><!-- /.col -->
-
-                                            <div class="col-xs-12 col-lg-11 col-sm-10 no-margin">
-                                                <div class="comment-body">
-                                                    <div class="meta-info">
-                                                        <div class="author inline">
-                                                            <a href="#" class="bold">John Doe</a>
-                                                        </div>
-                                                        <div class="star-holder inline">
-                                                            <div class="star" data-score="3"></div>
-                                                        </div>
-                                                        <div class="date inline pull-right">
-                                                            12.07.2013
-                                                        </div>
-                                                    </div><!-- /.meta-info -->
-                                                    <p class="comment-text">
-                                                        Integer id purus ultricies nunc tincidunt congue vitae nec felis. Vivamus sit amet nisl convallis, faucibus risus in, suscipit sapien. Vestibulum egestas interdum tellus id venenatis.
-                                                    </p><!-- /.comment-text -->
-                                                </div><!-- /.comment-body -->
-
-                                            </div><!-- /.col -->
-
-                                        </div><!-- /.row -->
-                                    </div><!-- /.comment-item -->
+                                @endforeach
+                                
                                 </div><!-- /.comments -->
 
                                 <div class="add-review row">
                                     <div class="col-sm-8 col-xs-12">
                                         <div class="new-review-form">
                                             <h2>Add review</h2>
-                                            <form id="contact-form" class="contact-form" method="post" >
-                                                <div class="row field-row">
+                                            <form id="contact-form" class="contact-form" method="post" action="{{route('addcomment')}}" >
+                                            @csrf   
+                                            <div class="row field-row">
                                                     <div class="col-xs-12 col-sm-6">
                                                         <label>name*</label>
-                                                        <input class="le-input" >
+                                                        <input class="le-input" readonly="true" value="{{ Auth::user()->name }}">
                                                     </div>
                                                     <div class="col-xs-12 col-sm-6">
                                                         <label>email*</label>
-                                                        <input class="le-input" >
+                                                        <input class="le-input" readonly="true" value="{{ Auth::user()->email }}">
                                                     </div>
                                                 </div><!-- /.field-row -->
 
@@ -415,11 +438,11 @@
 
                                                 <div class="field-row">
                                                     <label>your review</label>
-                                                    <textarea rows="8" class="le-input"></textarea>
+                                                    <textarea rows="8" class="le-input" name="description"></textarea>
                                                 </div><!-- /.field-row -->
-
+                                            <input type="hidden" name="piece_id" value='{{$piece->id}}'>
                                                 <div class="buttons-holder">
-                                                    <button type="submit" class="le-button huge">submit</button>
+                                                    <button  class="le-button huge">Add review</button>
                                                 </div><!-- /.buttons-holder -->
                                             </form><!-- /.contact-form -->
                                         </div><!-- /.new-review-form -->

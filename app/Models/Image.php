@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Support\Str;
-// use Intervention\Image\ImageManagerStatic as Image;
+
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+// use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Str;
 
-class Piece extends Model
+class Image extends Model
 {
     use CrudTrait;
 
@@ -16,11 +17,11 @@ class Piece extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'pieces';
+    protected $table = 'images';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-  //  protected $fillable = ['subcategory_id'];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -29,7 +30,6 @@ class Piece extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
     public function setImageAttribute($value)
     {
         $attribute_name = "image";
@@ -70,37 +70,27 @@ class Piece extends Model
             $this->attributes[$attribute_name] = $public_destination_path.'/'.$filename;
         }
     }
+    public function Cat() {
+        $tab=[];
+        $ax= Subcategory::with('category')->get();
+       // foreach($ax as $a){
+            foreach($this->Category as $b){
+           array_push($tab,$b->name);
+           }  
+      // }
+        $x=implode(",", $tab);
+       return $x;
+            
+   }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-   
-    public function fournisseur()
+    public function piece()
     {
-        return $this->BelongsTo(Fournisseur::class);
+        return $this->belongsTo(Piece::class);
     }
-    public function commande()
-    {
-        return $this->belongsToMany(Commande::class);
-    }
-    public function car()
-    {
-        return $this->belongsToMany(Car::class);
-    }
-    public function subcategory()
-    {
-        return $this->BelongsTo(Subcategory::class,'subcategory_id');
-    }
-    public function user()
-    {
-        return $this->belongsToMany(\User::class);
-    }
-    public function myimage()
-    {
-        return $this->hasMany(Image::class);
-    }
-   
     /*
     |--------------------------------------------------------------------------
     | SCOPES
