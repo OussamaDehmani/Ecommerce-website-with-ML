@@ -189,17 +189,15 @@
                                 <div class="control-group">
                                     <input class="search-field" placeholder="Search for item" />
 
-                                    <ul class="categories-filter animate-dropdown">
-                                        <li class="dropdown">
+                                    <ul class="categories-filter animate-dropdown" >
+                                        <li class="dropdown" >
 
                                             <a class="dropdown-toggle"  data-toggle="dropdown" href="category-grid.html">all categories</a>
 
-                                            <ul class="dropdown-menu" role="menu" >
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">laptops</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">tv & audio</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">gadgets</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">cameras</a></li>
-
+                                            <ul class="dropdown-menu" role="menu" style="height:400px; overflow-y:scroll">
+                                            @foreach($Cars as $car)
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">{{$car->marque}}</a></li>
+                                            @endforeach
                                             </ul>
                                         </li>
                                     </ul>

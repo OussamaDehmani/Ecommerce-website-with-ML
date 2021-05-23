@@ -256,19 +256,22 @@
 
                     if($star.hasClass('big')){
                         $star.raty({
-                            starOff: 'assets/images/star-big-off.png',
-                            starOn: 'assets/images/star-big-on.png',
+                            starOff: 'images/star-big-off.png',
+                            starOn: 'images/star-big-on.png',
                             space: false,
                             score: function() {
+                              
                                 return $(this).attr('data-score');
                             }
                         });
                     }else{
                      $star.raty({
-                        starOff: 'assets/images/star-off.png',
-                        starOn: 'assets/images/star-on.png',
+                        starOff: 'images/star-off.png',
+                        starOn: 'images/star-on.png',
                         space: false,
                         score: function() {
+                            var $valeur=$(this).attr('data-score');
+                            // $('input[name="mystar"]').val($valeur);
                             return $(this).attr('data-score');
                         }
                     });

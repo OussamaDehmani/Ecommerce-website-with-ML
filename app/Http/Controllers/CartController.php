@@ -1,9 +1,17 @@
 <?php
 
+
+
+
+
 namespace App\Http\Controllers;
 use App\Models\Piece;
+use App\Models\Rate;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
+
+
 class CartController extends Controller
 {
     /**
@@ -41,11 +49,13 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+      
         $Piece= Piece::where('id',$request->input('myid'))->first();
         $temoin=0;
         foreach(Cart::content() as $item){
         //dd($item->id==$request->input('myid'),$item->id,$request->input('myid')) ;
-          
+
+        // if the product exist already update it with the new qte
           if($item->id==$request->input('myid')){
           Cart::remove($item->rowId);
           Cart::add($request->input('myid'),$request->input('name'),$request->input('myqte'),$request->input('prix'), ['image' => $request->input('image')])->associate('Piece');
@@ -53,13 +63,29 @@ class CartController extends Controller
     
           }
         }
-    
+        // if the product doesn't exist in our cart add it
         if($temoin==0){
         Cart::add($request->input('myid'),$request->input('name'),$request->input('myqte'),$request->input('prix'), ['image' => $request->input('image')])->associate('Piece');
      
           
         }
-       
+
+        //rate the product 
+        //check if the user has already rate the product and just update it
+        $rating=Rate::where([['piece_id',$request->input('myid')],['user_id',Auth::id()]])->get();
+        $cnt=$rating->count();
+   
+        if($cnt!=0){
+            Rate::where('id',$rating[0]->id)->update(['rate' =>$request->input('score')]);
+        }
+        else{
+        //if the user rate the product for the first time
+        $rate=new Rate();
+        $rate->user_id= Auth::id();
+        $rate->piece_id= $request->input('myid');
+        $rate->rate= $request->input('score');
+        $rate->save();
+        }
         return redirect()->route('index')->with('success','le produit a été ajouté ');
         
     }

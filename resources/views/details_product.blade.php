@@ -225,10 +225,15 @@
                          
                         <form action="{{route('cart.store')}}" method="post">
                             @csrf
-                            <div class="star-holder inline"><div class="star" data-score="4"></div></div>
+                            <div class="star-holder inline">
+                                <div class="star" data-score="4"></div>
+                            </div>
+                           
                             <div class="availability"><label>Availability:</label><span class="available">  in stock</span></div>
 
-                            <div class="title"><a href="#">{{$piece->name}}</a></div>
+                            <div class="title">
+                           
+                            <a href="#">{{$piece->name}}</a></div>
                             <div class="brand">sony</div>
 
                             <div class="social-row">

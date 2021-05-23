@@ -9,11 +9,13 @@ use App\Models\Piece;
 use App\Models\Car;
 use App\Models\Piece_user;
 use App\Models\Clique;
+use App\Models\Rate;
 use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+
 
 class CarController extends Controller
 {
@@ -92,6 +94,9 @@ class CarController extends Controller
       //list of category
       $Categories= Category::all()->take(9);
 
+      // get all cars
+      $Cars= Car::All();
+
       return view('index1',[
         'Categories'=>$Categories,
         'Cards'=>$x,
@@ -100,6 +105,7 @@ class CarController extends Controller
         'New_arrivals'=>$new_arrivals,
         'Cliqued'=>$Cliqued,
         'Four'=>$Four,
+        'Cars'=>$Cars,
         ]);
   }
 
@@ -115,34 +121,7 @@ class CarController extends Controller
         ]);
   }
 
-    function rate(Request  $request ){
 
-    $Piece_user=new Piece_user();
-    $Piece_user->rate=$request->rate;
-    $Piece_user->user_id=$request->user_id;
-    $Piece_user->piece_id=$request->piece_id;
-    $Piece_user->save();
-   // dd($request->all());
-    return response()->json($Piece_user);
-  }
-
-
-
-    function shop($id){
-      $Pieces= Piece::where('subcategory_id','=',$id)
-      ->where('image','<>',null)
-      ->get();
-      $Cars= Car::All();
-      $Categories= Category::All();
-      $x= Cart::content();
-   
-      return view('shop',[
-        'Cars'=>$Cars,
-        'Pieces'=>$Pieces,
-        'Categories'=>$Categories,
-        'Cards'=>$x
-      ]);
-    }
 
     function details($id){
       //get the product
@@ -150,19 +129,15 @@ class CarController extends Controller
       $qte=1;
       $idcat=$Piece->subcategory->category->id;
       $Subcategories= Subcategory::where('category_id',$idcat)->take(5)->get();
-    
+      $Cars= Car::All();
+
       foreach(Cart::content() as $cart){
         if($cart->id==$id){
           $qte=$cart->qty;
         }
       }
 
-      //get simillar products
-      // $Similar= Piece::where([
-      //   ['subcategory_id','=',$Piece->subcategory_id],
-      //   ['image','<>','null']
-      //   ])->get();
-        
+
       //insert user choice
         $clic=new Clique();
         $clic->user_id=1;
@@ -177,6 +152,7 @@ class CarController extends Controller
       return view('details_product',[
         'piece'=>$Piece,
         'comments'=>$comments,
+        'Cars'=>$Cars,
         'qte'=>$qte,
         'Subcategories'=>$Subcategories,
       ]);
@@ -185,12 +161,30 @@ class CarController extends Controller
 
     function addcomment(Request $request){
    
+ 
       $comment=new Comment();
       $comment->description=$request->description;
       $comment->piece_id=$request->piece_id;
       $comment->user_id=Auth::user()->id;
       $comment->date_pub=Carbon::now();
       $comment->save();
+
+      //rate the product 
+      //check if the user has already rate the product and just update it
+      $rating=Rate::where([['piece_id',$request->piece_id],['user_id',Auth::id()]])->get();
+      $cnt=$rating->count();
+  
+      if($cnt!=0){
+          Rate::where('id',$rating[0]->id)->update(['rate' =>$request->input('score')]);
+      }
+      else{
+      //if the user rate the product for the first time
+      $rate=new Rate();
+      $rate->user_id= Auth::id();
+      $rate->piece_id= $request->input('myid');
+      $rate->rate= $request->input('score');
+      $rate->save();
+      }
  
      return $this->details($request->piece_id);
     }
@@ -201,7 +195,11 @@ class CarController extends Controller
 
 function subcatgory($id){  
   $Pieces=Piece::where('subcategory_id','=',$id)->get();
-  return view('Subpieces',['pieces'=>$Pieces]);
+  $Cars= Car::All();
+  return view('Subpieces',[
+    'pieces'=>$Pieces,
+    'Cars'=>$Cars,
+    ]);
 }
     
 function test($id){  
