@@ -44,7 +44,15 @@ use App\Http\Controllers\Auth\LoginController;
 
 
 
-Auth::routes();
+// Auth::routes();
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@gogo');
+
 //Route::get('/pannier/getall', 'CartController@index')->name('cart.index');
 Route::get('/test/{id}', 'CarController@test');
 Route::get('/destroy/{id}', 'CartController@destroy');
@@ -63,7 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/pannier/addnoqte', 'CartController@storenoqte')->name('cart.storenoqte');
     Route::get('/mycart', 'CartController@index')->name('cart.index');
     Route::post('/addcomment', 'CarController@addcomment')->name('addcomment');
-    Route::get('/subcategory/{id}', 'CarController@subcatgory')->name('addcomment');
+    Route::get('/subcategory/{id}', 'CarController@subcatgory')->name('subcategory');
 });
 Route::get('/','CarController@home')->name('index');
 Route::patch('/pannier/{rowid}', 'CartController@update')->name('cart.update');

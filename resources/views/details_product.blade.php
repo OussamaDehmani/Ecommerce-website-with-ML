@@ -223,7 +223,7 @@
                     <div class="no-margin col-xs-12 col-sm-7 body-holder">
                     <div class="body">
                          
-                        <form action="{{route('cart.store')}}" methode="post">
+                        <form action="{{route('cart.store')}}" method="post">
                             @csrf
                             <div class="star-holder inline"><div class="star" data-score="4"></div></div>
                             <div class="availability"><label>Availability:</label><span class="available">  in stock</span></div>

@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Models\Car;
+use App\Models\favcar;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
 {
     /*
@@ -64,10 +66,76 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        
+    
+        $user=User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // $data=$data['car'] ;
+
+        // foreach($data as $c){
+          
+        //     $favcar=new Favcar();
+        //     $favcar->user_id=$user->id;
+        //     $favcar->car_id=$c;
+        //     $favcar->save();
+
+        // }
+        
+        return $user;
+    }
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  * @return \App\User
+    //  */
+    // public function add(Request $request){
+    // dd($request);
+    // }
+
+
+        /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $Cars=Car::all();
+       
+        return view('auth.register', ['Cars'=>$Cars]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     
+     */
+    public function gogo(Request $request){
+
+    $user=User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+    ]);
+
+    $data=$request->car;
+
+    foreach($data as $c){
+      
+        $favcar=new Favcar();
+        $favcar->user_id=$user->id;
+        $favcar->car_id=$c;
+        $favcar->save();
+
+    }
+    Auth::loginUsingId($user->id);
+    return redirect()->route('index');
     }
 }

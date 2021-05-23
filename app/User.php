@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Models\Car;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,5 +42,9 @@ class User extends Authenticatable
     public function user()
     {
         return $this->belongsToMany(App\Models\User::class);
+    }
+    public function favcar()
+    {
+        return $this->belongsToMany(Car::class);
     }
 }
