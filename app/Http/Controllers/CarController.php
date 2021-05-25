@@ -10,6 +10,7 @@ use App\Models\Car;
 use App\Models\Piece_user;
 use App\Models\Clique;
 use App\Models\Rate;
+use App\Models\Favcar;
 use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -19,37 +20,36 @@ use Carbon\Carbon;
 
 class CarController extends Controller
 {
-    function index(){
-        $x= Cart::content();
-        $tab=[];
-        foreach($x as $card){
-          array_push($tab,Piece::where('id','=',$card->id)->first());
-        }
-     
-        $Categories= Category::All();
-        // $Pieces= Piece::All();
-        // $Subcategorie= Subcategory::where('image','<>','null')->get();
-        // $Cars= Car::All();
-        // $bestsell= DB::table('commande_piece')
-        // ->join('pieces', 'pieces.id', '=', 'commande_piece.piece_id')
-        // ->select(DB::raw('count(piece_id) as count, pieces.name,pieces.image,commande_piece.piece_id,pieces.Caracteristique,pieces.prix'))
-        // ->where('pieces.image','<>','null')
-        // ->groupBy('piece_id')
-        // ->take(9)
-        // ->get();
-        // $Pieces= DB::table('pieces')
-        // ->select('*')
-        // ->where('pieces.image','<>','null')
-        // ->get();
-      return view('index',[
-          //  'Categories'=>$Categories,
-          //  'Subcategorie'=>$Subcategorie,
-          //  'Cars'=>$Cars,
-          //  'bestsell'=>$bestsell,
-          //  'Pieces'=>$Pieces,
-          //  'Cards'=>$x,
-           ]);
+    function piecewithcars($id){
+
+      //get the pieces compatible with the searched car
+      $Pieces= DB::table('car_piece')
+      ->join('pieces', 'pieces.id', '=', 'car_piece.piece_id')
+      ->where('car_piece.car_id','=',$id)
+      ->get();
+
+      //get All cars
+      $Cars= Car::All();
+
+      // get all categories
+      $SubCategories= Subcategory::all();
+
+      // add into favcars table the searched car for this user
+      $favcar=new Favcar();
+      $favcar->user_id=Auth::user()->id;
+      $favcar->car_id=$id;
+      $favcar->save();
+
+      return view('CarsListe',[
+        'Pieces'=>$Pieces,
+        'Cars'=>$Cars,
+        'SubCategories'=>$SubCategories,
+      ]);
     }
+
+
+
+
 
         
     function home(){
@@ -110,16 +110,6 @@ class CarController extends Controller
   }
 
         
-    function cart(){
-      $x= Cart::content();
-      $Categories= Category::All();
-      $Cars= Car::All();
-      return view('cart',[
-        'Categories'=>$Categories,
-        'Cars'=>$Cars,
-        'Cards'=>$x,
-        ]);
-  }
 
 
 
@@ -202,16 +192,5 @@ function subcatgory($id){
     ]);
 }
     
-function test($id){  
-//   Cart::destroy();
-  dd(Cart::content());
-//   dd($cart);
-// foreach($cart as $c){
-//   if ($c->id = $id){
-    
-//   }
-// }
-// }
-}
 
 }

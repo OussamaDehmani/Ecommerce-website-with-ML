@@ -62,6 +62,7 @@ Route::get('/destroyindex/{id}', 'CartController@destroyindex');
 Route::group(['middleware' => ['auth']], function () { 
 
     Route::get('/details/{id}', 'CarController@details')->name('details');
+
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/checkout','PayementController@index')->name('checkout');
     Route::post('/checkout','CheckoutController@store')->name('checkout.store');
@@ -79,3 +80,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
+Route::get('/cars/{id}', 'CarController@piecewithcars')->name('cars');

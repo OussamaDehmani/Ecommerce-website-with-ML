@@ -104,7 +104,24 @@ class PieceCrudController extends CrudController
                 //  }), // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
              ],
         ); 
-
+            CRUD::addColumn([    // Select2Multiple = n-n relationship (with pivot table)
+                'label'     => "cars",
+                'type'      => 'select2_multiple',
+                'name'      => 'car', // the method that defines the relationship in your Model
+           
+                // optional
+                'entity'    => 'car', // the method that defines the relationship in your Model
+                'model'     => "App\Models\Car", // foreign key model
+                'attribute' => 'marque', // foreign key attribute that is shown to user
+                'pivot'     => true, // on create&update, do you need to add/delete pivot table entries?
+                // 'select_all' => true, // show Select All and Clear buttons?
+           
+                // optional
+                // 'options'   => (function ($query) {
+                //     return $query->orderBy('name', 'ASC')->where('depth', 1)->get();
+                // }), // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
+           ],
+        ); 
     }
 
     /**
@@ -176,6 +193,23 @@ class PieceCrudController extends CrudController
             //      return $query->orderBy('name', 'ASC')->where('depth', 1)->get();
             //  }), // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
          ],);
+         $this->crud->addField([    // Select2Multiple = n-n relationship (with pivot table)
+            'label'     => "cars",
+            'type'      => 'select2_multiple',
+            'name'      => 'car', // the method that defines the relationship in your Model
+       
+            // optional
+            'entity'    => 'car', // the method that defines the relationship in your Model
+            'model'     => "App\Models\Car", // foreign key model
+            'attribute' => 'marque', // foreign key attribute that is shown to user
+            'pivot'     => true, // on create&update, do you need to add/delete pivot table entries?
+            // 'select_all' => true, // show Select All and Clear buttons?
+       
+            // optional
+            // 'options'   => (function ($query) {
+            //     return $query->orderBy('name', 'ASC')->where('depth', 1)->get();
+            // }), // force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
+       ],);
    
       
          

@@ -26,7 +26,7 @@ class PieceRequest extends FormRequest
     public function rules()
     {
         return [
-             'name' => 'required|unique:pieces,name',
+             'name' => 'required',//|unique:pieces,name
         ];
     }
 

@@ -192,11 +192,11 @@
                                     <ul class="categories-filter animate-dropdown" >
                                         <li class="dropdown" >
 
-                                            <a class="dropdown-toggle"  data-toggle="dropdown" href="category-grid.html">all categories</a>
+                                            <a class="dropdown-toggle"  data-toggle="dropdown" href="category-grid.html">Cars Category</a>
 
                                             <ul class="dropdown-menu" role="menu" style="height:400px; overflow-y:scroll">
                                             @foreach($Cars as $car)
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">{{$car->marque}}</a></li>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('cars', ['id' => $car->id]) }}">{{$car->marque}}</a></li>
                                             @endforeach
                                             </ul>
                                         </li>
