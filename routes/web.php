@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/mycart', 'CartController@index')->name('cart.index');
     Route::post('/addcomment', 'CarController@addcomment')->name('addcomment');
     Route::get('/subcategory/{id}', 'CarController@subcatgory')->name('subcategory');
+    Route::get('/mytest', 'CarController@apiWithoutKey');
 });
 Route::get('/','CarController@home')->name('index');
 Route::patch('/pannier/{rowid}', 'CartController@update')->name('cart.update');
@@ -81,3 +82,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/cars/{id}', 'CarController@piecewithcars')->name('cars');
+Route::get('/mytest', 'CarController@apiWithoutKey');

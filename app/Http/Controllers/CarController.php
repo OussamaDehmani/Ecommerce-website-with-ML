@@ -16,10 +16,33 @@ use Illuminate\Support\Facades\DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use GuzzleHttp\Client;
 
 class CarController extends Controller
 {
+
+  //function that handel the response from flask api
+  public function recommended_product()
+  {
+      $client = new Client();
+      $userid=Auth::user()->id;
+      // $url = "http://127.0.0.1:5000/?id=5";
+      // $response = $client->request('GET', $url, [
+      //     'verify'  => false,
+      // ]);
+      // $responseBody = json_decode($response->getBody());
+
+      // dd($responseBody);
+
+        $response = $client->get('http://127.0.0.1:5000/?id=5');
+
+        $responseArray = json_decode($response->getBody()->getContents(), true);
+
+        dd($responseArray[3]);
+     
+      // return view('projects.apiwithoutkey', compact('responseBody'));
+  }
+
     function piecewithcars($id){
 
       //get the pieces compatible with the searched car
